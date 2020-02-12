@@ -1,19 +1,13 @@
-﻿using SIS.HTTP;
-using SIS.HTTP.Logging;
-using SIS.HTTP.Response;
-using SIS.MvcFramework;
-using SulsApp.Models;
-using SulsApp.Services;
-using SulsApp.ViewModels.Users;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Security.Cryptography;
-
-namespace SulsApp.Controllers
+﻿namespace SulsApp.Controllers
 {
+    using SIS.HTTP;
+    using SIS.HTTP.Logging;
+    using SIS.MvcFramework;
+    using SulsApp.Services;
+    using SulsApp.ViewModels.Users;
+    using System;
+    using System.Net.Mail;
+
     public class UsersController : Controller
     {
         private IUsersService usersService;
@@ -34,14 +28,20 @@ namespace SulsApp.Controllers
         public HttpResponse Login(string username, string password)
         {
             var userId = this.usersService.GetUserId(username, password);
+
             if (userId == null)
             {
-                return this.Redirect("/Users/Login");
+                return this.Error($"Username \"{username}\" does not exists!");
+            }
+            else if (userId == "invalidPassword")
+            {
+                return this.Error("Invalid Password!");
             }
 
             this.SignIn(userId);
             this.logger.Log("User logged in: " + username);
-            return this.Redirect("/");
+
+            return this.Redirect("/Home/IndexLoggedIn");
         }
 
         public HttpResponse Register()
@@ -67,11 +67,6 @@ namespace SulsApp.Controllers
                 return this.Error("Password should be between 6 and 20 characters.");
             }
 
-            if (!IsValid(input.Email))
-            {
-                return this.Error("Invalid email!");
-            }
-
             if (this.usersService.IsUsernameUsed(input.Username))
             {
                 return this.Error("Username already used!");
@@ -82,8 +77,14 @@ namespace SulsApp.Controllers
                 return this.Error("Email already used!");
             }
 
+            if (!IsValid(input.Email))
+            {
+                return this.Error("Invalid email!");
+            }
+
             this.usersService.CreateUser(input.Username, input.Email, input.Password);
             this.logger.Log("New user: " + input.Username);
+
             return this.Redirect("/Users/Login");
         }
 
@@ -95,6 +96,7 @@ namespace SulsApp.Controllers
             }
 
             this.SignOut();
+
             return this.Redirect("/");
         }
 

@@ -1,8 +1,8 @@
-﻿using SIS.HTTP;
-using System.Collections.Generic;
-
-namespace SIS.MvcFramework
+﻿namespace SIS.MvcFramework
 {
+    using SIS.HTTP;
+    using System.Collections.Generic;
+
     public interface IMvcApplication
     {
         void Configure(IList<Route> routeTable);

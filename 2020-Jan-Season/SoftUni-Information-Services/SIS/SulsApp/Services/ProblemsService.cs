@@ -1,10 +1,7 @@
-﻿using SulsApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SulsApp.Services
+﻿namespace SulsApp.Services
 {
+    using SulsApp.Models;
+
     public class ProblemsService : IProblemsService
     {
         private readonly ApplicationDbContext db;
@@ -21,6 +18,7 @@ namespace SulsApp.Services
                 Name = name,
                 Points = points,
             };
+
             this.db.Problems.Add(problem);
             this.db.SaveChanges();
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SulsApp.Services
+﻿namespace SulsApp.Services
 {
     public interface IProblemsService
     {

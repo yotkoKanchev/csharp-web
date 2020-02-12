@@ -1,13 +1,11 @@
-﻿using SIS.HTTP;
-using SIS.HTTP.Logging;
-using SIS.HTTP.Response;
-using SIS.MvcFramework;
-using SulsApp.Services;
-using SulsApp.ViewModels.Home;
-using System;
-
-namespace SulsApp.Controllers
+﻿namespace SulsApp.Controllers
 {
+    using SIS.HTTP;
+    using SIS.HTTP.Logging;
+    using SIS.MvcFramework;
+    using SulsApp.ViewModels.Home;
+    using System;
+
     public class HomeController : Controller
     {
         private readonly ILogger logger;
@@ -27,6 +25,13 @@ namespace SulsApp.Controllers
                 Year = DateTime.UtcNow.Year,
             };
             return this.View(viewModel);
+        }
+
+        public HttpResponse IndexLoggedIn()
+        {
+            this.logger.Log("Hello from IndexLoggedIn");
+
+            return this.View();
         }
     }
 }

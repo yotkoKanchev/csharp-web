@@ -1,10 +1,7 @@
-﻿using SIS.HTTP;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SIS.MvcFramework
+﻿namespace SIS.MvcFramework
 {
+    using SIS.HTTP;
+
     public class HttpGetAttribute : HttpMethodAttribute
     {
         public HttpGetAttribute()

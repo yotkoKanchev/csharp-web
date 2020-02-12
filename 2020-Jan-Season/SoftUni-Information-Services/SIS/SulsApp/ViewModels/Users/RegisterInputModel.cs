@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SulsApp.ViewModels.Users
+﻿namespace SulsApp.ViewModels.Users
 {
     public class RegisterInputModel
     {

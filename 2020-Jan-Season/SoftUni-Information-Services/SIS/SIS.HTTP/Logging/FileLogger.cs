@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-namespace SIS.HTTP.Logging
+﻿namespace SIS.HTTP.Logging
 {
+    using System.IO;
+
     public class FileLogger : ILogger
     {
         public void Log(string message)

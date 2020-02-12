@@ -1,9 +1,9 @@
-﻿using SIS.HTTP;
-using SIS.MvcFramework;
-using SulsApp.Services;
-
-namespace SulsApp.Controllers
+﻿namespace SulsApp.Controllers
 {
+    using SIS.HTTP;
+    using SIS.MvcFramework;
+    using SulsApp.Services;
+
     public class ProblemsController : Controller
     {
         private readonly IProblemsService problemsService;
@@ -42,6 +42,7 @@ namespace SulsApp.Controllers
             }
 
             this.problemsService.CreateProblem(name, points);
+
             return this.Redirect("/");
         }
     }
